@@ -7,7 +7,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+
+
+</style>
 <body>
-    <p> PESSOA LISTA  </p>
+
+<h1> Clientes: </h1>
+<table>
+    <tr>
+        <th> Nome</th>
+        <th> Sobrenome</th>
+        <th> Idade</th>
+        <th> Salário</th>
+        <th> Bio</th>
+        <th> Foto</th>
+    </tr>
+    {% for client in clients %}
+        <tr>
+            <td> {{ client.first_name }}</td>
+            <td> {{ client.last_name }}</td>
+            <td> {{ client.age }}</td>
+            <td> {{ client.salary }}</td>
+            <td> {{ client.bio }}</td>
+            <td> {{ client.photo }}</td>
+            <td> <a href="{% url 'person_update' client.id %}"> Editar </a> </td>
+            <td> <a href="{% url 'person_delete' client.id %}"> Deletar </a> </td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+<a href="{% url 'person_new' %}"> Criar novo </a>
 </body>
 </html>
